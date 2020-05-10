@@ -19,5 +19,5 @@ class Recording(val title: String, val context: Context): Item(){
     override fun getLayout(): Int {
         return R.layout.recording_layout
     }
-//comment
+
 }

@@ -22,7 +22,7 @@ class RecordingRepository{
         fun playRecording(context: Context, title: String){
             val path = Uri.parse(Environment.getExternalStorageDirectory().absolutePath+"/soundrecorder/$title")
 
-
+            // to show a toast it we try to press and play a recording while another one is being played
             val manager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
             if(manager.isMusicActive) {
                 Toast.makeText(context, "Another recording is just playing! Wait until it's finished!", Toast.LENGTH_SHORT).show()
@@ -37,15 +37,16 @@ class RecordingRepository{
 
         }
     }
-
+    // initiate a variable for the externam storage to bs used for saving the recordings
     private val recorderDirectory = File(Environment.getExternalStorageDirectory().absolutePath+"/soundrecorder/")
+    // array list to save the recordings in
     private var file : ArrayList<String>? = null
 
     init {
         file = ArrayList<String>()
         getRecording()
     }
-
+    // returns back the recording pressed
     private fun getRecording(){
         val files: Array<out File>? = recorderDirectory.listFiles()
         for(i in files!!){

@@ -1,3 +1,7 @@
+// Moustapha Said 888907524
+// add name and  CWID  ----- 2
+// add name and CWID    ------3
+
 package com.example.final_app.soundrecorder
 
 import android.Manifest
@@ -31,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         checkNeededPermissions()
         initUI()
 
+        // Start recording when recording button is pressed
+
         fab_start_recording.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
@@ -43,23 +49,28 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // when stop recording button is pressed
+
         fab_stop_recording.setOnClickListener{
             stopRecording()
         }
 
+        // To pause the recording after starting to record
         fab_pause_recording.setOnClickListener {
             pauseRecording()
         }
-
+        // To resume recording after pausing the record
         fab_resume_recording.setOnClickListener {
             resumeRecording()
         }
+
+        // Takes us to a new Activity that contains the recordings
 
         fab_recordings.setOnClickListener {
             val intent = Intent(this, RecordingsActivity::class.java)
             startActivity(intent)
         }
-
+        // if we are recording and we press the take us to recording, the recording stops automatically
         if(viewModel?.recorderState == RecorderState.Stopped){
             fab_stop_recording.isEnabled = false
         }

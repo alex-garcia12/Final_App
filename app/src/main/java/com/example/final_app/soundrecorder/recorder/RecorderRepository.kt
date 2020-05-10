@@ -58,6 +58,7 @@ class RecorderRepository{
         mediaRecorder?.setOutputFile(output)
     }
 
+    // start recording function
     @SuppressLint("RestrictedApi")
     fun startRecording() {
 
@@ -74,7 +75,7 @@ class RecorderRepository{
         }
 
     }
-
+    // stop recording function
     @SuppressLint("RestrictedApi")
     fun stopRecording(){
         mediaRecorder?.stop()
@@ -85,7 +86,7 @@ class RecorderRepository{
         initRecorder()
     }
 
-
+    // pause recording function
     @TargetApi(Build.VERSION_CODES.N)
     @SuppressLint("RestrictedApi")
     fun pauseRecording(){
@@ -93,6 +94,7 @@ class RecorderRepository{
         mediaRecorder?.pause()
     }
 
+    // resume recording function
     @TargetApi(Build.VERSION_CODES.N)
     @SuppressLint("RestrictedApi")
     fun resumeRecording(){
@@ -115,6 +117,7 @@ class RecorderRepository{
         mediaRecorder?.setOutputFile(output)
     }
 
+    // function for the timer
     private fun startTimer(){
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
@@ -135,6 +138,7 @@ class RecorderRepository{
         recordingTimeString.postValue("00:00")
     }
 
+    //update timer display based on start, stop, pause , resume
     private fun updateDisplay(){
         val minutes = recordingTime / (60)
         val seconds = recordingTime % 60
