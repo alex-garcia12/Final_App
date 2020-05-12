@@ -1,5 +1,5 @@
 // Moustapha Said 888907524
-// add name and  CWID  ----- 2
+// Alex Garcia 802297556
 // add name and CWID    ------3
 
 package com.example.final_app.soundrecorder
@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        checkNeededPermissions()
-        initUI()
+        checkNeededPermissions()        //Get permissions before doing anything
+        initUI()                        // Prepare the UI
 
         // Start recording when recording button is pressed
 
@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Get permissions from user to use the microphone and access files
     private fun checkNeededPermissions() {
         println("Requesting permission")
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -104,7 +105,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
+    // Recording has begun. set the fab for stop recording to true (enabled), as
+    // well as make start/resume invisible.
     @SuppressLint("RestrictedApi")
     private fun startRecording() {
         viewModel?.startRecording()
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
         fab_resume_recording.visibility = View.INVISIBLE
     }
 
+    //Similar to startRecording but essentially the opposite
     @SuppressLint("RestrictedApi")
     private fun stopRecording(){
         viewModel?.stopRecording()
@@ -125,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         fab_resume_recording.visibility = View.INVISIBLE
     }
 
+    // Function to handle fabs when pausing recording
     @TargetApi(Build.VERSION_CODES.N)
     @SuppressLint("RestrictedApi")
     private fun pauseRecording(){
@@ -136,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         fab_resume_recording.visibility = View.VISIBLE
     }
 
+    // Function to handle fabs when resuming recording
     @TargetApi(Build.VERSION_CODES.N)
     @SuppressLint("RestrictedApi")
     private fun resumeRecording(){

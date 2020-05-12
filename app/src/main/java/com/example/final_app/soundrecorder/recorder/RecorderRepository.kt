@@ -10,11 +10,11 @@ import java.io.IOException
 import java.io.File
 import java.util.*
 
-
-
+//This section deals with file management and verification. checks to see if files (recordings)
+//already exist. If they do, display them in the app. otherwise, create a new file for the
+//app to start writing to when a recording is made
 
 class RecorderRepository{
-
 
     companion object {
         @Volatile
@@ -62,7 +62,6 @@ class RecorderRepository{
     @SuppressLint("RestrictedApi")
     fun startRecording() {
 
-
         try {
             println("Starting recording!")
             mediaRecorder?.prepare()
@@ -103,6 +102,7 @@ class RecorderRepository{
         mediaRecorder?.resume()
     }
 
+    //function to help name each recording as well as the audio source, format, encoder, and output file
     private fun initRecorder() {
         mediaRecorder = MediaRecorder()
 
@@ -117,7 +117,7 @@ class RecorderRepository{
         mediaRecorder?.setOutputFile(output)
     }
 
-    // function for the timer
+    // function to start the timer
     private fun startTimer(){
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
@@ -127,11 +127,12 @@ class RecorderRepository{
         }, 1000, 1000)
     }
 
+    // function to stop the timer
     private fun stopTimer(){
         timer.cancel()
     }
 
-
+    // function to reset the timer
     private fun resetTimer() {
         timer.cancel()
         recordingTime = 0
